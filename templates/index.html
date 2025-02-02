@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sklep Internetowy</title>
+    <!-- Link do Bootstrap (dla stylów) -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Ikony Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <!-- Personalizowane style -->
+    <style>
+        body {
+            background-color: #121212;
+            color: #E0E0E0;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            margin-top: 50px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #f0f0f0;
+        }
+
+        .tile {
+            background-color: #2C2C2C;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            transition: transform 0.3s;
+            color: #f0f0f0;
+        }
+
+        .tile:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .tile i {
+            font-size: 40px;
+            margin-bottom: 15px;
+        }
+
+        .tile a {
+            text-decoration: none;
+            color: #f0f0f0;
+            font-weight: bold;
+            font-size: 18px;
+            display: block;
+            margin-top: 15px;
+        }
+
+        .tile a:hover {
+            color: #0d6efd;
+        }
+
+        .row-cols-1, .row-cols-md-2, .row-cols-lg-3 {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        /* Responsywność */
+        @media (max-width: 768px) {
+            .row-cols-1 {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Baner -->
+    <div class="bg-dark text-light text-center p-5">
+        <h1>Sklep internetowy: szm16-komp! 🚀</h1>
+        <p>Witaj w naszym sklepie internetowym! Wybierz, co chcesz zrobić.</p>
+    </div>
+
+    <!-- Kafelki - Główna sekcja -->
+    <div class="container">
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3">
+            <!-- Kafelek: Lista użytkowników -->
+            <div class="col">
+                <div class="tile">
+                    <i class="fas fa-users"></i>
+                    <h3>Lista użytkowników</h3>
+                    <p>Zarządzaj użytkownikami w sklepie. Dodawaj, edytuj, usuwaj konta.</p>
+                    <a href="{{ url_for('users') }}">Zobacz użytkowników</a>
+                </div>
+            </div>
+
+            <!-- Kafelek: Lista produktów -->
+            <div class="col">
+                <div class="tile">
+                    <i class="fas fa-cogs"></i>
+                    <h3>Lista produktów</h3>
+                    <p>Przeglądaj dostępne produkty w sklepie. Dodawaj nowe produkty.</p>
+                    <a href="{{ url_for('products') }}">Zobacz produkty</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Skrypty do Bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>

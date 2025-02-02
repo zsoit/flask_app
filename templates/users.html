@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Użytkownicy - Dodaj</title>
+    <!-- Link do Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Ikony Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #121212;
+            color: #E0E0E0;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            margin-top: 50px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #f0f0f0;
+        }
+
+        .form-container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .form-control {
+            background-color: #2C2C2C;
+            color: #f0f0f0;
+            border: none;
+            border-radius: 5px;
+            margin-bottom: 15px;
+        }
+
+        .btn-submit {
+            background-color: #0d6efd;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            width: 100%;
+            padding: 10px;
+        }
+
+        .btn-submit:hover {
+            background-color: #0056b3;
+        }
+
+        .tile {
+            background-color: #2C2C2C;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            transition: transform 0.3s;
+            color: #f0f0f0;
+            margin-bottom: 15px;
+        }
+
+        .tile:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .tile i {
+            font-size: 40px;
+            margin-bottom: 15px;
+        }
+
+        .tile a {
+            text-decoration: none;
+            color: #f0f0f0;
+            font-weight: bold;
+            font-size: 18px;
+            display: block;
+            margin-top: 15px;
+        }
+
+        .tile a:hover {
+            color: #0d6efd;
+        }
+
+        .row-cols-1, .row-cols-md-2, .row-cols-lg-3 {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .back-button {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Przycisk powrotu na górze strony -->
+    <a href="{{ url_for('home') }}" class="btn btn-light back-button">
+        <i class="fas fa-arrow-left"></i> Powrót
+    </a>
+
+    <div class="container">
+        <h1>Dodaj użytkownika</h1>
+
+        <!-- Formularz dodawania użytkownika -->
+        <div class="form-container">
+            <form method="POST">
+                {{ form.hidden_tag() }}
+                <div class="mb-3">
+                    <label for="name" class="form-label">{{ form.name.label }}</label>
+                    {{ form.name(class="form-control") }}
+                </div>
+                <div class="mb-3">
+                    <label for="surname" class="form-label">{{ form.surname.label }}</label>
+                    {{ form.surname(class="form-control") }}
+                </div>
+                <div class="mb-3">
+                    <label for="email" class="form-label">{{ form.email.label }}</label>
+                    {{ form.email(class="form-control") }}
+                </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label">{{ form.password.label }}</label>
+                    {{ form.password(class="form-control") }}
+                </div>
+                <button type="submit" class="btn-submit">{{ form.submit }}</button>
+            </form>
+        </div>
+
+        <h2 class="mt-5 text-center mb-5">Lista użytkowników:</h2>
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3">
+            {% for user in users %}
+            <div class="col">
+                <div class="tile">
+                    <i class="fas fa-user"></i>
+                    <h3>{{ user[1] }} {{ user[2] }}</h3>
+                    <p>{{ user[3] }}</p>
+                    <a href="{{ url_for('delete_user', user_id=user[0]) }}" class="text-danger">
+                        <i class="fas fa-trash-alt"></i> Usuń
+                    </a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- Skrypty do Bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>
